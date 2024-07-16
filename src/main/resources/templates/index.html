@@ -1,12 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" data-th-href="@{css/output.css}">
+<html lang="en" class="dark">
+
+<head data-th-replace="~{common/allcdns :: header}">
 </head>
+
 <body>
-   <div class="cm text-2xl text-red-500"> This is landing page</div>
+    <div data-th-replace="~{common/navbar :: nav}"></div>
 </body>
+
 </html>
