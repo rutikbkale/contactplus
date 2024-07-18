@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head data-th-replace="~{common/allcdns :: headercdn}">
+</head>
+
+<body class="bg-gray-100 dark:bg-gray-900">
+    <nav data-th-replace="~{common/navbar :: nav}"></nav>
+    </div>
+    <div class="flex justify-center mt-3">
+        <div
+            class="w-full lg:mx-auto max-w-sm p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-6 md:p-8 dark:bg-gray-800 dark:border-gray-700">
+            <form class="space-y-2" action="#">
+                <h5 class="text-xl text-center font-medium text-gray-900 dark:text-white">Sign up</h5>
+                <div>
+                    <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Username
+                    </label>
+                    <input type="text" name="name" id="name"
+                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+                        required />
+                </div>
+                <div>
+                    <label for="email"
+                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Email</label>
+                    <input type="email" name="email" id="email"
+                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+                        required />
+                </div>
+                <div>
+                    <label for="mobNo" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Mobile
+                        No</label>
+                    <input type="text" name="mobNo" id="mobNo"
+                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+                        required />
+                </div>
+                <div>
+                    <label for="password"
+                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Password</label>
+                    <input type="password" name="password" id="password"
+                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+                        required />
+                </div>
+                <div>
+                    <label for="re-password"
+                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Re-enter Password</label>
+                    <input type="password" name="re-password" id="re-password"
+                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+                        required />
+                </div>
+                <button type="submit"
+                    class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"><i
+                        class="fa-solid fa-user-plus"></i>&nbsp; Create
+                    Account</button>
+            </form>
+        </div>
+    </div>
+    <div data-th-include="~{common/allcdns :: footercdn}"></div>
+    <footer data-th-replace="~{common/footer :: foot}"></footer>
+</body>
+
+</html>
