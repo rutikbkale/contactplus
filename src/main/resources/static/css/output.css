@@ -563,3 +563,12 @@ video {
   --tw-text-opacity: 1;
   color: rgb(239 68 68 / var(--tw-text-opacity));
 }
+
+.border-y-8{
+  border-top-width: 8px;
+  border-bottom-width: 8px;
+}
+
+.border-t-8{
+  border-top-width: 8px;
+}
