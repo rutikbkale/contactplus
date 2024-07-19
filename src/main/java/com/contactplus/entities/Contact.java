@@ -20,7 +20,7 @@ import lombok.Setter;
 public class Contact {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long contactId;
     private String name;
     private String email;

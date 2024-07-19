@@ -2,12 +2,12 @@ package com.contactplus.controllers;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
-
 import com.contactplus.entities.User;
 import com.contactplus.forms.UserForm;
 import com.contactplus.services.UserService;
-
+import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
@@ -31,7 +31,7 @@ public class MainController {
     // signup form mapping
     @RequestMapping("/signup")
     public String signupPage(Model model) {
-        UserForm userForm = new UserForm("Rutik Kale", "kalerutik656@gmail.com", "9172475163", "12345");
+        UserForm userForm = new UserForm();
         model.addAttribute("userForm", userForm);
         return new String("signup");
     }
@@ -44,7 +44,12 @@ public class MainController {
 
     // recieving form data using userForm object & inserting to database
     @PostMapping("/doSignup")
-    public String signupForm(@ModelAttribute UserForm userForm) {
+    public String signupForm(@Valid @ModelAttribute UserForm userForm, BindingResult bindingResult, Model model) {
+
+        // server side validation
+        if (bindingResult.hasErrors()) {
+            return "signup";
+        }
 
         // fetching data from userForm
         User user = User.builder()
@@ -55,9 +60,15 @@ public class MainController {
                 .build();
 
         // adding user object to database
-        userService.saveUser(user);
+        User savedUser = userService.saveUser(user);
 
-        return "redirect:signup";
+        if (savedUser != null) {
+            model.addAttribute("msg", "Registration Successfully !");
+        } else {
+            model.addAttribute("msg", "Registration Failed !");
+        }
+        model.addAttribute("userForm", new UserForm());
+        return "signup";
     }
 
 }

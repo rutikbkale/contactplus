@@ -572,3 +572,7 @@ video {
 .border-t-8{
   border-top-width: 8px;
 }
+
+.mt-2{
+  margin-top: 0.5rem;
+}

@@ -7,44 +7,60 @@
 <body class="bg-gray-100 dark:bg-gray-900">
     <nav data-th-replace="~{common/navbar :: nav}"></nav>
     </div>
+
+
     <div class="flex justify-center mt-3">
         <div
             class="w-full lg:mx-auto max-w-md p-4 bg-white border-t-8 border-blue-700 rounded-lg shadow sm:p-6 md:p-8 dark:bg-gray-800">
-            <form class="space-y-2" data-th-action="@{/contactplus/doSignup}" method="post"
-                data-th-object="${userForm}">
-                <h5 class="text-xl text-center font-medium text-gray-900 dark:text-white">Sign up</h5>
+            <h5 class="text-xl text-center font-medium text-gray-900 dark:text-white">Sign up</h5>
+
+            <div data-th-if="${msg}" class="mt-2 flex justify-center items-center p-4 mb-4 text-sm text-green-800 rounded-lg bg-green-50 dark:bg-gray-800 dark:text-green-400"
+                role="alert">
+                <div>
+                    <span class="font-medium" data-th-text="${msg}"></span>
+                </div>
+            </div>
+            <form class="space-y-2" data-th-action="@{/contactplus/doSignup}" method="post" data-th-object="${userForm}"
+                novalidate>
+
                 <div>
                     <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Username
                     </label>
                     <input type="text" name="name" id="name" data-th-field="*{name}"
-                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
-                        required />
+                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" />
+                    <p data-th-if="${#fields.hasErrors('name')}" data-th-errors="*{name}"
+                        class="text-red-500 text-sm italic p-2"></p>
                 </div>
                 <div>
                     <label for="email"
                         class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Email</label>
                     <input type="email" name="email" id="email" data-th-field="*{email}"
-                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
-                        required />
+                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" />
+                    <p data-th-if="${#fields.hasErrors('email')}" data-th-errors="*{email}"
+                        class="text-red-500 text-sm italic p-2"></p>
                 </div>
                 <div>
                     <label for="mobNo" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Mobile
                         No</label>
                     <input type="text" name="mobNo" id="mobNo" data-th-field="*{mobNo}"
-                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
-                        required />
+                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" />
+                    <p data-th-if="${#fields.hasErrors('mobNo')}" data-th-errors="*{mobNo}"
+                        class="text-red-500 text-sm italic p-2"></p>
                 </div>
                 <div>
                     <label for="password"
                         class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Password</label>
                     <input type="password" name="password" id="password" data-th-field="*{password}"
-                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
-                        required />
+                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" />
+                    <p data-th-if="${#fields.hasErrors('password')}" data-th-errors="*{password}"
+                        class="text-red-500 text-sm italic p-2"></p>
                 </div>
-                <button type="submit"
-                    class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"><i
-                        class="fa-solid fa-user-plus"></i>&nbsp; Create
-                    Account</button>
+                <div class="mt-2">
+                    <button type="submit"
+                        class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"><i
+                            class="fa-solid fa-user-plus"></i>&nbsp; Create
+                        Account</button>
+                </div>
             </form>
         </div>
     </div>
