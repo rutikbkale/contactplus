@@ -5,6 +5,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.contactplus.entities.Provider;
 import com.contactplus.entities.User;
 import com.contactplus.forms.UserForm;
 import com.contactplus.services.UserService;
@@ -59,6 +61,7 @@ public class MainController {
                 .email(userForm.getEmail())
                 .mobNo(userForm.getMobNo())
                 .password(userForm.getPassword())
+                .provider(Provider.SELF)
                 .build();
 
         // adding user object to database

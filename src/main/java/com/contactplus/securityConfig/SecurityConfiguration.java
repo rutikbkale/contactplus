@@ -10,7 +10,6 @@ import org.springframework.security.config.annotation.web.configurers.AbstractHt
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
-
 import com.contactplus.services.impl.CustomUserServiceImpl;
 
 @Configuration
@@ -18,6 +17,9 @@ public class SecurityConfiguration {
 
     @Autowired
     private CustomUserServiceImpl customUserServiceImpl;
+
+    @Autowired
+    private OauthenticationHandler oauthenticationHandler;
 
     @Bean
     public AuthenticationProvider authenticationProvider() {
@@ -35,16 +37,14 @@ public class SecurityConfiguration {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
 
-        // httpSecurity.csrf(csrf -> {
-        // csrf.ignoringRequestMatchers("/authenticate");
-        // });
-
         httpSecurity.authorizeHttpRequests(authorize -> {
             authorize.requestMatchers("/contactplus/user/**").authenticated();
             authorize.anyRequest().permitAll();
         });
 
         httpSecurity.csrf(AbstractHttpConfigurer::disable);
+
+        // signin using email and password using spring security
 
         httpSecurity.formLogin(formLogin -> {
             formLogin.loginPage("/contactplus/signin");
@@ -55,9 +55,18 @@ public class SecurityConfiguration {
             formLogin.failureUrl("/contactplus/signin?error=true");
         });
 
+        // signout using email and password using spring security
+
         httpSecurity.logout(logout -> {
             logout.logoutUrl("/do-logout");
             logout.logoutSuccessUrl("/contactplus/signin?logout=true");
+        });
+
+        // signin using google oauth2
+        
+        httpSecurity.oauth2Login(oauth -> {
+            oauth.loginPage("/contactplus/signin");
+            oauth.successHandler(oauthenticationHandler);
         });
 
         return httpSecurity.build();
