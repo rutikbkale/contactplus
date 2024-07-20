@@ -6,7 +6,6 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -15,7 +14,6 @@ import org.springframework.security.web.SecurityFilterChain;
 import com.contactplus.services.impl.CustomUserServiceImpl;
 
 @Configuration
-@EnableWebSecurity
 public class SecurityConfiguration {
 
     @Autowired
@@ -37,20 +35,20 @@ public class SecurityConfiguration {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
 
-        httpSecurity.csrf(csrf -> {
-            csrf.ignoringRequestMatchers("/authenticate");
-        });
+        // httpSecurity.csrf(csrf -> {
+        // csrf.ignoringRequestMatchers("/authenticate");
+        // });
 
         httpSecurity.authorizeHttpRequests(authorize -> {
-            authorize.requestMatchers("contactplus/user/**").authenticated();
+            authorize.requestMatchers("/contactplus/user/**").authenticated();
             authorize.anyRequest().permitAll();
         });
 
-        // httpSecurity.csrf(AbstractHttpConfigurer::disable);
+        httpSecurity.csrf(AbstractHttpConfigurer::disable);
 
         httpSecurity.formLogin(formLogin -> {
             formLogin.loginPage("/contactplus/signin");
-            formLogin.loginProcessingUrl("/authenticate");
+            formLogin.loginProcessingUrl("/do-signin");
             formLogin.usernameParameter("email");
             formLogin.passwordParameter("password");
             formLogin.successForwardUrl("/contactplus/user/dashboard");
