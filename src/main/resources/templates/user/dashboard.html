@@ -9,6 +9,11 @@
 
 <body>
     <a data-th-href="@{'/contactplus/signin?logout=true'}">Sign out</a>
+
+    <div data-th-if="${loggedUser}">
+        <h2 data-th-text="${loggedUser.name}"></h2>
+        <h2 data-th-text="${loggedUser.email}"></h2>
+    </div>
 </body>
 
 </html>

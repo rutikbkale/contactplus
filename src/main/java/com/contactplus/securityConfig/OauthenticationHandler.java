@@ -49,7 +49,7 @@ public class OauthenticationHandler implements AuthenticationSuccessHandler {
 
             savedUser.setEmail(user.getAttribute("email") != null
                     ? user.getAttribute("email").toString()
-                    : user.getAttribute("login").toString() + "@gmail.com");
+                    : user.getAttribute("login").toString() + "@github.com");
             savedUser.setName(user.getAttribute("login").toString());
             savedUser.setProvider(Provider.GITHUB);
         }
