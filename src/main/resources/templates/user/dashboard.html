@@ -1,19 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+<head data-th-replace="~{common/allcdns :: headercdn}">
 </head>
 
-<body>
-    <a data-th-href="@{'/contactplus/signin?logout=true'}">Sign out</a>
-
-    <div data-th-if="${loggedUser}">
-        <h2 data-th-text="${loggedUser.name}"></h2>
-        <h2 data-th-text="${loggedUser.email}"></h2>
+<body class="dark:bg-gray-900 dark:text-white">
+    <nav data-th-replace="~{user/user-nav :: nav}"></nav>
     </div>
+    <div data-th-include="~{common/allcdns :: footercdn}"></div>
+    <footer data-th-replace="~{common/footer :: foot}"></footer>
 </body>
 
 </html>
