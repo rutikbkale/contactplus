@@ -10,8 +10,6 @@ public class UserController {
 
     @RequestMapping("/dashboard")
     public String userDashboard(Authentication authentication) {
-        // String username = Helper.getAuthenticateUserName(authentication);
-        // System.out.println("Username is : " + username);
         return "user/dashboard";
     }
 
