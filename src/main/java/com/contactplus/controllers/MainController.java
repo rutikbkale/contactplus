@@ -21,11 +21,6 @@ public class MainController {
     @Autowired
     private UserService userService;
 
-    // dependency injection using contruction injection
-    // public MainController(UserService userService) {
-    // this.userService = userService;
-    // }
-
     // landing page
     @RequestMapping("/")
     public String landingPage() {
