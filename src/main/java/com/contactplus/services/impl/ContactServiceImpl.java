@@ -1,10 +1,11 @@
 package com.contactplus.services.impl;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
-
 import com.contactplus.entities.Contact;
 import com.contactplus.entities.User;
 import com.contactplus.repositories.ContactRepository;
@@ -22,8 +23,13 @@ public class ContactServiceImpl implements ContactService {
     }
 
     @Override
-    public List<Contact> getContactsByUser(User user) {
-        return contactRepository.findByUser(user);
+    public Page<Contact> getContactsByUser(User user, int page, int size, String sortBy, String direction) {
+
+        Sort sort = direction.equals("desc") ? Sort.by(sortBy).descending() : Sort.by(sortBy).ascending();
+
+        Pageable pageable = PageRequest.of(page, size, sort);
+
+        return contactRepository.findByUser(user, pageable);
     }
 
 }

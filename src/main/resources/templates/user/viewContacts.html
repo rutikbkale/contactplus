@@ -18,7 +18,7 @@
                 </div>
             </div> -->
 
-            <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+            <div class="relative shadow-md sm:rounded-lg">
                 <div
                     class="flex flex-column sm:flex-row flex-wrap space-y-4 sm:space-y-0 items-center justify-end pb-4">
                     <label for="table-search" class="sr-only">Search</label>
@@ -59,8 +59,8 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <div data-th-if="${contacts}">
-                            <tr data-th-object="${contact}" data-th-each="contact : ${contacts}"
+                        <div>
+                            <tr data-th-object="${contact}" data-th-each="contact : ${contactPage.getContent}"
                                 class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                                 <td scope="row" class="px-6 py-4 ">
                                     <span data-th-text="*{contactId}"></span>
@@ -96,15 +96,25 @@
                                 </td>
                             </tr>
                         </div>
-                        <div data-th-unless="${contacts}"
-                            class="mt-2 flex justify-center items-center p-4 mb-4 text-sm text-green-800 rounded-lg bg-green-50 dark:bg-gray-800 dark:text-green-400"
-                            role="alert">
-                            <div>
-                                <span class="font-medium">No Data Found</span>
-                            </div>
-                        </div>
                     </tbody>
                 </table>
+                <div class="flex justify-end p-4">
+                    <!-- Previous Button -->
+                    <div data-th-unless="${contactPage.isFirst}">
+                        <a data-th-href="@{'/contactplus/user/contacts/viewContacts?page='+${contactPage.getNumber-1}}"
+                            class="flex items-center justify-center px-3 h-8 me-3 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
+                            <i class="fa-solid fa-left-long"></i>
+                            &nbsp; Previous
+                        </a>
+                    </div>
+                    <div data-th-unless="${contactPage.isLast}">
+                        <a data-th-href="@{'/contactplus/user/contacts/viewContacts?page='+${contactPage.getNumber+1}}"
+                            class="flex items-center justify-center px-3 h-8 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
+                            Next &nbsp;
+                            <i class="fa-solid fa-right-long"></i>
+                        </a>
+                    </div>
+                </div>
             </div>
 
         </div>

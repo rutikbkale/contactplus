@@ -761,6 +761,10 @@ video {
   height: 0.75rem;
 }
 
+.h-3\.5 {
+  height: 0.875rem;
+}
+
 .w-10 {
   width: 2.5rem;
 }
@@ -807,6 +811,10 @@ video {
 
 .w-48 {
   width: 12rem;
+}
+
+.w-3\.5 {
+  width: 0.875rem;
 }
 
 .max-w-md {
@@ -1281,6 +1289,11 @@ video {
   background-color: rgb(249 250 251 / var(--tw-bg-opacity));
 }
 
+.hover\:text-gray-700:hover {
+  --tw-text-opacity: 1;
+  color: rgb(55 65 81 / var(--tw-text-opacity));
+}
+
 .hover\:underline:hover {
   text-decoration-line: underline;
 }
@@ -1518,6 +1531,11 @@ video {
 
 .rtl\:right-0:where([dir="rtl"], [dir="rtl"] *) {
   right: 0px;
+}
+
+.rtl\:rotate-180:where([dir="rtl"], [dir="rtl"] *) {
+  --tw-rotate: 180deg;
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
 }
 
 .rtl\:justify-end:where([dir="rtl"], [dir="rtl"] *) {

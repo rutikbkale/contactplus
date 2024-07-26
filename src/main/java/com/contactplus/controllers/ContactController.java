@@ -1,8 +1,7 @@
 package com.contactplus.controllers;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,13 +9,13 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import com.contactplus.entities.Contact;
 import com.contactplus.entities.User;
 import com.contactplus.forms.ContactForm;
 import com.contactplus.helpers.Helper;
 import com.contactplus.services.ContactService;
 import com.contactplus.services.UserService;
-
 import jakarta.validation.Valid;
 
 @Controller
@@ -76,17 +75,22 @@ public class ContactController {
     }
 
     @RequestMapping("/viewContacts")
-    public String viewContacts(Authentication authentication, Model model) {
+    public String viewContacts(
+            @RequestParam(value = "page", defaultValue = "0") int page,
+            @RequestParam(value = "size", defaultValue = "5") int size,
+            @RequestParam(value = "sortBy", defaultValue = "contactId") String sortFBy,
+            @RequestParam(value = "direction", defaultValue = "asc") String direction,
+            Authentication authentication, Model model) {
 
         // fetching user with thier email id
         String email = Helper.getAuthenticateUserName(authentication);
         User loggedUser = userService.getUserByEmail(email);
 
         // fetching contacts list from database
-        List<Contact> contacts = contactService.getContactsByUser(loggedUser);
+        Page<Contact> contactPage = contactService.getContactsByUser(loggedUser, page, size, sortFBy, direction);
 
         // sending contacts list to the view
-        model.addAttribute("contacts", contacts);
+        model.addAttribute("contactPage", contactPage);
 
         return "user/viewContacts";
     }
