@@ -1,5 +1,7 @@
 package com.contactplus.controllers;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
@@ -71,6 +73,22 @@ public class ContactController {
         model.addAttribute("contactForm", new ContactForm());
 
         return "user/addContact";
+    }
+
+    @RequestMapping("/viewContacts")
+    public String viewContacts(Authentication authentication, Model model) {
+
+        // fetching user with thier email id
+        String email = Helper.getAuthenticateUserName(authentication);
+        User loggedUser = userService.getUserByEmail(email);
+
+        // fetching contacts list from database
+        List<Contact> contacts = contactService.getContactsByUser(loggedUser);
+
+        // sending contacts list to the view
+        model.addAttribute("contacts", contacts);
+
+        return "user/viewContacts";
     }
 
 }

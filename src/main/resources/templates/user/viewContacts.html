@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head data-th-replace="~{user/user-allcdns :: headercdn}">
+</head>
+
+<body class="dark:bg-gray-900 dark:text-white">
+    <nav data-th-replace="~{user/user-nav :: nav}"></nav>
+    <div class="mt-[75px] md:mt-[75px] md:ml-[275px] md:mr-5">
+        <div class="w-full  p-4 bg-white border-t-8 border-blue-700 rounded-lg shadow sm:p-6 md:p-8 dark:bg-gray-800">
+            <h5 class="text-2xl text-center font-semibold text-gray-900 dark:text-white">View Contacts</h5>
+
+            <!-- <div data-th-if="${msg}"
+                class="mt-2 flex justify-center items-center p-4 mb-4 text-sm text-green-800 rounded-lg bg-green-50 dark:bg-gray-800 dark:text-green-400"
+                role="alert">
+                <div>
+                    <span class="font-medium" data-th-text="${msg}"></span>
+                </div>
+            </div> -->
+
+            <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+                <div
+                    class="flex flex-column sm:flex-row flex-wrap space-y-4 sm:space-y-0 items-center justify-end pb-4">
+                    <label for="table-search" class="sr-only">Search</label>
+                    <div class="relative">
+                        <div
+                            class="absolute inset-y-0 left-0 rtl:inset-r-0 rtl:right-0 flex items-center ps-3 pointer-events-none">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                        </div>
+                        <input type="text" id="table-search"
+                            class="block p-2 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg w-80 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                            placeholder="Search for items">
+                    </div>
+                </div>
+                <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+                    <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                        <tr>
+                            <th scope="col" class="px-6 py-3">
+                                Contact Id
+                            </th>
+                            <th scope="col" class="px-6 py-3">
+                                Contact Name
+                            </th>
+                            <th scope="col" class="px-6 py-3">
+                                Email
+                            </th>
+                            <th scope="col" class="px-6 py-3">
+                                Address
+                            </th>
+                            <th scope="col" class="px-6 py-3">
+                                Mobile No
+                            </th>
+                            <th scope="col" class="px-6 py-3">
+                                Favorite
+                            </th>
+                            <th scope="col" class="px-6 py-3">
+                                Action
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <div data-th-if="${contacts}">
+                            <tr data-th-object="${contact}" data-th-each="contact : ${contacts}"
+                                class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                                <td scope="row" class="px-6 py-4 ">
+                                    <span data-th-text="*{contactId}"></span>
+                                </td>
+                                <td class="px-6 py-4">
+                                    <span data-th-text="*{name}"></span>
+                                </td>
+                                <td class="px-6 py-4">
+                                    <span data-th-text="*{email}"></span>
+                                </td>
+                                <td class="px-6 py-4">
+                                    <span data-th-text="*{address}"></span>
+                                </td>
+                                <td class="px-6 py-4">
+                                    <span data-th-text="*{mobNo}"></span>
+                                </td>
+                                <td class="px-6 py-4">
+                                    <span data-th-if="*{favorite}"><i
+                                            class="fa-solid fa-star text-yellow-600"></i></span>
+                                    <span data-th-unless="*{favorite}"><i
+                                            class="fa-regular fa-star text-yellow-600"></i></span>
+                                </td>
+                                <td class="px-6 py-4 flex justify-around">
+                                    <a data-th-href="@{/contactplus/user/contacts}"
+                                        class="font-medium text-blue-600 dark:text-blue-500 hover:underline"><i
+                                            class="fa-solid fa-eye text-blue-600 w-4 h-4"></i></a>
+                                    <a data-th-href="@{/contactplus/user/contacts}"
+                                        class="font-medium text-blue-600 dark:text-blue-500 hover:underline"><i
+                                            class="fa-solid fa-trash text-red-600 w-4 h-4"></i></a>
+                                    <a data-th-href="@{/contactplus/user/contacts}"
+                                        class="font-medium text-blue-600 dark:text-blue-500 hover:underline"><i
+                                            class="fa-solid fa-pen text-yellow-600 w-4 h-4"></i></a>
+                                </td>
+                            </tr>
+                        </div>
+                        <div data-th-unless="${contacts}"
+                            class="mt-2 flex justify-center items-center p-4 mb-4 text-sm text-green-800 rounded-lg bg-green-50 dark:bg-gray-800 dark:text-green-400"
+                            role="alert">
+                            <div>
+                                <span class="font-medium">No Data Found</span>
+                            </div>
+                        </div>
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+    </div>
+    <div data-th-include="~{user/user-allcdns :: footercdn}"></div>
+    <footer data-th-replace="~{common/footer :: foot}"></footer>
+</body>
+
+</html>
