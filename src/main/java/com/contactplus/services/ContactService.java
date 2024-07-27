@@ -8,6 +8,8 @@ public interface ContactService {
 
     public Contact saveContact(Contact contact);
 
+    public Contact getByContactId(int contactId);
+
     public Page<Contact> getContactsByUser(User user, int page, int size, String sortBy, String direction);
 
 }

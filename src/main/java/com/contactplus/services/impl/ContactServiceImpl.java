@@ -32,4 +32,9 @@ public class ContactServiceImpl implements ContactService {
         return contactRepository.findByUser(user, pageable);
     }
 
+    @Override
+    public Contact getByContactId(int contactId) {
+        return contactRepository.findByContactId(contactId);
+    }
+
 }

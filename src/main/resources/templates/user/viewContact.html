@@ -1,0 +1,53 @@
+<!-- Main modal -->
+<div data-th-fragment="view-contact" id="view-contact" tabindex="-1" aria-hidden="true"
+    class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
+    <div class="relative p-4 w-full max-w-md max-h-full">
+        <!-- Modal content -->
+        <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
+            <!-- Modal header -->
+            <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600">
+                <h3 class="text-lg font-semibold text-gray-900 dark:text-white">
+                    Contact Details
+                </h3>
+                <button type="button"
+                    class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
+                    data-modal-toggle="view-contact">
+                    <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                        viewBox="0 0 14 14">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+                    </svg>
+                    <span class="sr-only">Close modal</span>
+                </button>
+            </div>
+            <!-- Modal body -->
+            <div class="grid gap-4 mb-4 p-4 grid-cols-2">
+                <div class="col-span-2 flex justify-between">
+                    <label for="name" class="mb-2 text-sm font-medium text-gray-900 dark:text-white">Contact ID
+                    </label>
+                    <span data-th-text="${contact.contactId}">101</span>
+                </div>
+                <div class="col-span-2 flex justify-between">
+                    <label for="name" class="mb-2 text-sm font-medium text-gray-900 dark:text-white">Contact Name
+                    </label>
+                    <span data-th-text="${contact.name}">101</span>
+                </div>
+                <div class="col-span-2 flex justify-between">
+                    <label for="name" class="mb-2 text-sm font-medium text-gray-900 dark:text-white">Contact Email
+                    </label>
+                    <span data-th-text="${contact.email}">101</span>
+                </div>
+                <div class="col-span-2 flex justify-between">
+                    <label for="name" class="mb-2 text-sm font-medium text-gray-900 dark:text-white">Contact Number
+                    </label>
+                    <span data-th-text="${contact.mobNo}">101</span>
+                </div>
+                <div class="col-span-2 flex justify-between">
+                    <label for="name" class="mb-2 text-sm font-medium text-gray-900 dark:text-white">Address
+                    </label>
+                    <span data-th-text="${contact.address}">101</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

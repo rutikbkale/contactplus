@@ -84,7 +84,7 @@
                                             class="fa-regular fa-star text-yellow-600"></i></span>
                                 </td>
                                 <td class="px-6 py-4 flex justify-around">
-                                    <a data-th-href="@{/contactplus/user/contacts}"
+                                    <a data-th-href="@{'/contactplus/user/contacts/viewContact='+${contact.contactId}}"
                                         class="font-medium text-blue-600 dark:text-blue-500 hover:underline"><i
                                             class="fa-solid fa-eye text-blue-600 w-4 h-4"></i></a>
                                     <a data-th-href="@{/contactplus/user/contacts}"
@@ -116,9 +116,10 @@
                     </div>
                 </div>
             </div>
-
         </div>
     </div>
+
+
     <div data-th-include="~{user/user-allcdns :: footercdn}"></div>
     <footer data-th-replace="~{common/footer :: foot}"></footer>
 </body>
