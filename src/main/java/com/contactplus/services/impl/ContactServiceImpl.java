@@ -37,4 +37,9 @@ public class ContactServiceImpl implements ContactService {
         return contactRepository.findByContactId(contactId);
     }
 
+    @Override
+    public void deleteContact(int contactId) {
+        contactRepository.deleteByContactId(contactId);
+    }
+
 }

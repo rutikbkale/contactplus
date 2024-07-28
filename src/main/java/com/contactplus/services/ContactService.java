@@ -10,6 +10,8 @@ public interface ContactService {
 
     public Contact getByContactId(int contactId);
 
+    public void deleteContact(int contactId);
+
     public Page<Contact> getContactsByUser(User user, int page, int size, String sortBy, String direction);
 
 }

@@ -13,6 +13,8 @@ public interface ContactRepository extends JpaRepository<Contact, Long> {
 
     public Contact findByContactId(int contactId);
 
+    public void deleteByContactId(int contactId);
+
     public Page<Contact> findByUser(User user, Pageable pageable);
 
 }

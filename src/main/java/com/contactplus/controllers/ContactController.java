@@ -18,6 +18,8 @@ import com.contactplus.forms.ContactForm;
 import com.contactplus.helpers.Helper;
 import com.contactplus.services.ContactService;
 import com.contactplus.services.UserService;
+
+import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 
 @Controller
@@ -97,13 +99,21 @@ public class ContactController {
         return "user/viewContacts";
     }
 
-    @GetMapping("/viewContact/{contactId}")
-    public String viewContactById(@PathVariable("contactId") int contactId, Model model) {
+    @RequestMapping("/viewContact")
+    public String viewContactById(@RequestParam("contactId") int contactId, Model model) {
 
         Contact currentContact = contactService.getByContactId(contactId);
 
         model.addAttribute("currentContact", currentContact);
 
-        return "user/viewContact";
+        return "redirect : user/viewContacts";
+    }
+
+    @RequestMapping("/delete/{contactId}")
+    public String deleteContact(@PathVariable("contactId") int contactId, HttpSession session) {
+
+        contactService.deleteContact(contactId);
+        session.setAttribute("msg", "Contact Deleted successfully !");
+        return "redirect :/user/viewContacts";
     }
 }

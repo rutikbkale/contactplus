@@ -84,12 +84,12 @@
                                             class="fa-regular fa-star text-yellow-600"></i></span>
                                 </td>
                                 <td class="px-6 py-4 flex justify-around">
-                                    <a data-th-href="@{'/contactplus/user/contacts/viewContact='+${contact.contactId}}"
+                                    <button onclick="openViewModal('${contact.contactId}')"
                                         class="font-medium text-blue-600 dark:text-blue-500 hover:underline"><i
-                                            class="fa-solid fa-eye text-blue-600 w-4 h-4"></i></a>
-                                    <a data-th-href="@{/contactplus/user/contacts}"
+                                            class="fa-solid fa-eye text-blue-600 w-4 h-4"></i></button>
+                                    <button data-th-onclick="deleteContact([[${contact.contactId}]])"
                                         class="font-medium text-blue-600 dark:text-blue-500 hover:underline"><i
-                                            class="fa-solid fa-trash text-red-600 w-4 h-4"></i></a>
+                                            class="fa-solid fa-trash text-red-600 w-4 h-4"></i></button>
                                     <a data-th-href="@{/contactplus/user/contacts}"
                                         class="font-medium text-blue-600 dark:text-blue-500 hover:underline"><i
                                             class="fa-solid fa-pen text-yellow-600 w-4 h-4"></i></a>
@@ -119,7 +119,11 @@
         </div>
     </div>
 
+    <!-- <div data-th-replace="~{user/contactModals :: viewContact}"></div> -->
 
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script data-th-src="@{'/js/contactsModal.js'}"></script>
     <div data-th-include="~{user/user-allcdns :: footercdn}"></div>
     <footer data-th-replace="~{common/footer :: foot}"></footer>
 </body>
