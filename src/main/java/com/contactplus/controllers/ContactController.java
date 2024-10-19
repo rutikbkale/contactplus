@@ -6,24 +6,22 @@ import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.contactplus.entities.Contact;
 import com.contactplus.entities.User;
 import com.contactplus.forms.ContactForm;
 import com.contactplus.helpers.Helper;
 import com.contactplus.services.ContactService;
 import com.contactplus.services.UserService;
-
-import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 
 @Controller
-@RequestMapping("/contactplus/user/contacts")
+@RequestMapping("/contactplus/contacts")
 public class ContactController {
 
     @Autowired
@@ -74,10 +72,10 @@ public class ContactController {
 
         // clearing the form fields
         model.addAttribute("contactForm", new ContactForm());
-
         return "user/addContact";
     }
 
+    // view contacts handler
     @RequestMapping("/viewContacts")
     public String viewContacts(
             @RequestParam(value = "page", defaultValue = "0") int page,
@@ -99,21 +97,50 @@ public class ContactController {
         return "user/viewContacts";
     }
 
-    @RequestMapping("/viewContact")
-    public String viewContactById(@RequestParam("contactId") int contactId, Model model) {
-
-        Contact currentContact = contactService.getByContactId(contactId);
-
-        model.addAttribute("currentContact", currentContact);
-
-        return "redirect : user/viewContacts";
+    // updating contact handler
+    @RequestMapping("/update/{contactId}")
+    public String showUpdateContactForm(@PathVariable("contactId") long contactId, Model model) {
+        Contact contact = contactService.getByContactId(contactId);
+        model.addAttribute("contactId", contactId);
+        model.addAttribute("contactForm", contact);
+        return "user/editContact"; // This will load the page with the modal
     }
 
+    // updating handler api
+    @PostMapping("/updateContact/{contactId}")
+    public String updateContact(@Valid @ModelAttribute Contact contactForm, @PathVariable long contactId,
+            BindingResult bindingResult,
+            RedirectAttributes redirectAttributes, Model model) {
+        if (bindingResult.hasErrors()) {
+            return "user/viewContacts"; // Show the form again with errors
+        }
+
+        contactService.updateContact(contactForm, contactId);
+        redirectAttributes.addFlashAttribute("msg", "Contact updated successfully!");
+
+        return "redirect:/contactplus/contacts/viewContacts";
+    }
+
+    // deteting contact
     @RequestMapping("/delete/{contactId}")
-    public String deleteContact(@PathVariable("contactId") int contactId, HttpSession session) {
-
+    public String deleteContact(@PathVariable("contactId") long contactId, RedirectAttributes redirectAttributes) {
         contactService.deleteContact(contactId);
-        session.setAttribute("msg", "Contact Deleted successfully !");
-        return "redirect :/user/viewContacts";
+
+        // Add a flash attribute to pass the message after the redirect
+        redirectAttributes.addFlashAttribute("msg", "Contact Deleted successfully!");
+
+        return "redirect:/contactplus/contacts/viewContacts";
     }
+    
+    // @RequestMapping("/viewContact")
+    // public String viewContactById(@RequestParam("contactId") long contactId,
+    // Model model) {
+
+    // Contact currentContact = contactService.getByContactId(contactId);
+
+    // model.addAttribute("currentContact", currentContact);
+
+    // return "redirect:user/viewContacts";
+    // }
+
 }

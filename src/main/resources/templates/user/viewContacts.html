@@ -10,13 +10,13 @@
         <div class="w-full  p-4 bg-white border-t-8 border-blue-700 rounded-lg shadow sm:p-6 md:p-8 dark:bg-gray-800">
             <h5 class="text-2xl text-center font-semibold text-gray-900 dark:text-white">View Contacts</h5>
 
-            <!-- <div data-th-if="${msg}"
+            <div data-th-if="${msg}"
                 class="mt-2 flex justify-center items-center p-4 mb-4 text-sm text-green-800 rounded-lg bg-green-50 dark:bg-gray-800 dark:text-green-400"
                 role="alert">
                 <div>
                     <span class="font-medium" data-th-text="${msg}"></span>
                 </div>
-            </div> -->
+            </div>
 
             <div class="relative shadow-md sm:rounded-lg">
                 <div
@@ -84,14 +84,14 @@
                                             class="fa-regular fa-star text-yellow-600"></i></span>
                                 </td>
                                 <td class="px-6 py-4 flex justify-around">
-                                    <button onclick="openViewModal('${contact.contactId}')"
-                                        class="font-medium text-blue-600 dark:text-blue-500 hover:underline"><i
-                                            class="fa-solid fa-eye text-blue-600 w-4 h-4"></i></button>
+                                    <!-- <button class="font-medium text-blue-600 dark:text-blue-500 hover:underline"><i
+                                            class="fa-solid fa-eye text-blue-600 w-4 h-4"></i></button> -->
                                     <button data-th-onclick="deleteContact([[${contact.contactId}]])"
                                         class="font-medium text-blue-600 dark:text-blue-500 hover:underline"><i
                                             class="fa-solid fa-trash text-red-600 w-4 h-4"></i></button>
-                                    <a data-th-href="@{/contactplus/user/contacts}"
-                                        class="font-medium text-blue-600 dark:text-blue-500 hover:underline"><i
+
+                                    <a class="font-medium text-blue-600 dark:text-blue-500 hover:underline"
+                                        data-th-href="@{update/{contactId}(contactId=${contact.contactId})}"><i
                                             class="fa-solid fa-pen text-yellow-600 w-4 h-4"></i></a>
                                 </td>
                             </tr>
@@ -101,14 +101,14 @@
                 <div class="flex justify-end p-4">
                     <!-- Previous Button -->
                     <div data-th-unless="${contactPage.isFirst}">
-                        <a data-th-href="@{'/contactplus/user/contacts/viewContacts?page='+${contactPage.getNumber-1}}"
+                        <a data-th-href="@{'/contactplus/contacts/viewContacts?page='+${contactPage.getNumber-1}}"
                             class="flex items-center justify-center px-3 h-8 me-3 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
                             <i class="fa-solid fa-left-long"></i>
                             &nbsp; Previous
                         </a>
                     </div>
                     <div data-th-unless="${contactPage.isLast}">
-                        <a data-th-href="@{'/contactplus/user/contacts/viewContacts?page='+${contactPage.getNumber+1}}"
+                        <a data-th-href="@{'/contactplus/contacts/viewContacts?page='+${contactPage.getNumber+1}}"
                             class="flex items-center justify-center px-3 h-8 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
                             Next &nbsp;
                             <i class="fa-solid fa-right-long"></i>
@@ -119,6 +119,7 @@
         </div>
     </div>
 
+    <!-- <div data-th-replace="~{user/editModal :: editModal}"></div> -->
     <!-- <div data-th-replace="~{user/contactModals :: viewContact}"></div> -->
 
 

@@ -8,9 +8,11 @@ public interface ContactService {
 
     public Contact saveContact(Contact contact);
 
-    public Contact getByContactId(int contactId);
+    public Contact getByContactId(long contactId);
 
-    public void deleteContact(int contactId);
+    public Contact updateContact(Contact contact, long contactId);
+
+    public void deleteContact(long contactId);
 
     public Page<Contact> getContactsByUser(User user, int page, int size, String sortBy, String direction);
 

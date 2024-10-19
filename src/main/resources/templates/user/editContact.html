@@ -11,10 +11,9 @@
             <div class="col-span-4"></div>
             <div class="col-span-12 sm:col-span-8 md:col-span-4 md:mt-5">
 
-
                 <div
                     class="w-full lg:mx-auto max-w-md p-4 bg-white border-t-8 border-blue-700 rounded-lg shadow sm:p-6 md:p-8 dark:bg-gray-800">
-                    <h5 class="text-xl text-center font-medium text-gray-900 dark:text-white">Add Contact</h5>
+                    <h5 class="text-xl text-center font-medium text-gray-900 dark:text-white">Edit Contact</h5>
 
                     <div data-th-if="${msg}"
                         class="mt-2 flex justify-center items-center p-4 mb-4 text-sm text-green-800 rounded-lg bg-green-50 dark:bg-gray-800 dark:text-green-400"
@@ -23,8 +22,8 @@
                             <span class="font-medium" data-th-text="${msg}"></span>
                         </div>
                     </div>
-                    <form data-th-action="@{/contactplus/contacts/addContact}" method="post"
-                        data-th-object="${contactForm}" novalidate>
+                    <form th:action="@{/contactplus/contacts/updateContact/{contactId}(contactId=${contactId})}"
+                        method="post" data-th-object="${contactForm}" novalidate>
 
                         <div class="mb-3">
                             <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Name
@@ -71,8 +70,8 @@
                         <div class="mt-2">
                             <button type="submit"
                                 class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"><i
-                                    class="fa-solid fa-user-plus"></i>&nbsp; Add
-                                Contact</button>
+                                    class="fa-solid fa-pen"></i>&nbsp; Edit
+                            </button>
                         </div>
                     </form>
                 </div>

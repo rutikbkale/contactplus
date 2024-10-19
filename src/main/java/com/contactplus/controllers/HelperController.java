@@ -25,8 +25,6 @@ public class HelperController {
 
         String username = Helper.getAuthenticateUserName(authentication);
         User loggedUser = userService.getUserByEmail(username);
-        System.out.println(loggedUser.getEmail());
-        System.out.println(loggedUser.getUsername());
         model.addAttribute("loggedUser", loggedUser);
 
     }

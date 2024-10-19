@@ -58,9 +58,17 @@ function deleteContact(contactId) {
     }).then((result) => {
         if (result.isConfirmed) {
             // Implement the deletion logic here (e.g., make an AJAX request to delete the contact)
-            window.location.replace("http://localhost:8080/contactplus/user/contacts/delete/" + contactId);
+            window.location.href = "delete/" + contactId;
             Swal.fire("Deleted!", "The contact has been deleted.", "success");
         }
     });
+
+}
+function openModal() {
+    document.getElementById('editModal').classList.remove('hidden');
+}
+
+function closeModal() {
+    document.getElementById('editModal').classList.add('hidden');
 }
 

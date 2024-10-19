@@ -37,6 +37,11 @@ public class SecurityConfiguration {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
 
+        // httpSecurity.authorizeHttpRequests(authorize -> {
+        // authorize.requestMatchers("/contactplus/user/**").authenticated();
+        // authorize.anyRequest().permitAll();
+        // });
+
         httpSecurity.authorizeHttpRequests(authorize -> {
             authorize.requestMatchers("/contactplus/user/**").authenticated();
             authorize.anyRequest().permitAll();
@@ -63,7 +68,7 @@ public class SecurityConfiguration {
         });
 
         // signin using google oauth2
-        
+
         httpSecurity.oauth2Login(oauth -> {
             oauth.loginPage("/contactplus/signin");
             oauth.successHandler(oauthenticationHandler);

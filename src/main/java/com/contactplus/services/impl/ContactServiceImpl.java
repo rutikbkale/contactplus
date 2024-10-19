@@ -23,6 +23,32 @@ public class ContactServiceImpl implements ContactService {
     }
 
     @Override
+    public Contact getByContactId(long contactId) {
+        return contactRepository.findByContactId(contactId);
+    }
+
+    @Override
+    public Contact updateContact(Contact contact, long contactId) {
+        Contact existingContact = contactRepository.findByContactId(contactId);
+        existingContact.setName(contact.getName());
+        existingContact.setEmail(contact.getEmail());
+        existingContact.setMobNo(contact.getMobNo());
+        existingContact.setAddress(contact.getAddress());
+        existingContact.setFavorite(contact.isFavorite());
+        return contactRepository.save(existingContact);
+    }
+
+    @Override
+    public void deleteContact(long contactId) {
+        Contact contact = contactRepository.findByContactId(contactId);
+        if (contact != null) {
+            contactRepository.deleteById(contactId);
+        } else {
+            throw new RuntimeException("Contact not found");
+        }
+    }
+
+    @Override
     public Page<Contact> getContactsByUser(User user, int page, int size, String sortBy, String direction) {
 
         Sort sort = direction.equals("desc") ? Sort.by(sortBy).descending() : Sort.by(sortBy).ascending();
@@ -30,16 +56,6 @@ public class ContactServiceImpl implements ContactService {
         Pageable pageable = PageRequest.of(page, size, sort);
 
         return contactRepository.findByUser(user, pageable);
-    }
-
-    @Override
-    public Contact getByContactId(int contactId) {
-        return contactRepository.findByContactId(contactId);
-    }
-
-    @Override
-    public void deleteContact(int contactId) {
-        contactRepository.deleteByContactId(contactId);
     }
 
 }
